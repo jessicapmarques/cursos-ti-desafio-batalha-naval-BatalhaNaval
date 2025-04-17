@@ -13,67 +13,83 @@
 
     #include <stdio.h>
 
+    #define LINHAS 10
+    #define COLUNAS 10
+    #define agua 0
+
+
 int main() {
-    
+
+    int tabuleiro [LINHAS] [COLUNAS];
     char letras[10] = {'A','B','C','D','E','F','G','H','I','J'};
-
     int numeros[10] = {1,2,3,4,5,6,7,8,9,10};
-
-    int tabuleiro[10][10] = { 
-        {0,0,0,0,0,0,0,0,0,0}, 
-        {0,0,0,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,0,0,0}
-    };
-
     int navio_1[3] = {3,3,3};
     int navio_2[3] = {3,3,3};
 
-    tabuleiro[4][2] = navio_1[0];
-    tabuleiro[4][3] = navio_1[1];
-    tabuleiro[4][1] = navio_1[2];
-
-    tabuleiro[6][3] = navio_2[0];
-    tabuleiro[7][3] = navio_2[1];
-    tabuleiro[8][3] = navio_2[2];
-
-    
 
     printf("TABULEIRO BATALHA NAVAL\n");
     printf("  ");
-    for (int i = 0; i < 10; i++){
+
+    for (int i = 0; i < LINHAS; i++){
         printf("%c ", letras[i]); 
+         
     }
 
     printf("\n");
 
-    for (int l = 0; l < 10; l++)
+    for (int i = 0; i < LINHAS; i++)
     {
-        printf("%2d ", l + 1);
+         printf("%2d", numeros[i]);      
+    
 
-        for (int c = 0; c < 10; c++)
+        for (int j = 0; j < COLUNAS; j++){
 
-        {
-            printf("%d ", tabuleiro[l][c]);
+            tabuleiro[i][j] = agua;
+
+            // Nível Aventureiro - Expansão do Tabuleiro e Posicionamento Diagonal
             
+            if (i == 0 && j == 9 ) //inicio Terceiro navio
+            {
+                tabuleiro[i][j] = 3;
+                
+            }else if (i == 1 && j == 8 )
+            {
+                tabuleiro[i][j] = 3;
+
+            }else if (i == 2 && j == 7 )
+            {
+                tabuleiro[i][j] = 3;
+
+                
+            } else if (i == 9 && j == 9) //Inicio Quarto navio
+            {
+                tabuleiro[i][j] = 3;
+            }else if (i == 8 && j == 8)
+            {
+                tabuleiro[i][j] = 3;
+            }else if (i == 7 && j == 7)
+            {
+                tabuleiro[i][j] = 3;
+            }
+
+            tabuleiro[4][2] = navio_1[0]; //Inicio primeiro navio
+            tabuleiro[4][3] = navio_1[1];
+            tabuleiro[4][1] = navio_1[2];
+
+            tabuleiro[6][3] = navio_2[0]; //Inicio segundo navio
+            tabuleiro[7][3] = navio_2[1];
+            tabuleiro[8][3] = navio_2[2];
+            
+            printf("% d", tabuleiro[i][j]);
             
         }
+
         printf("\n");
         
     }
-    
 
     printf("\n\n");
-
-
-
-    // Nível Aventureiro - Expansão do Tabuleiro e Posicionamento Diagonal
+   
     // Sugestão: Expanda o tabuleiro para uma matriz 10x10.
     // Sugestão: Posicione quatro navios no tabuleiro, incluindo dois na diagonal.
     // Sugestão: Exiba o tabuleiro completo no console, mostrando 0 para posições vazias e 3 para posições ocupadas.
