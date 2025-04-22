@@ -25,64 +25,106 @@ int main() {
     int numeros[10] = {1,2,3,4,5,6,7,8,9,10};
     int navio_1[3] = {3,3,3};
     int navio_2[3] = {3,3,3};
+    int navio_3[3] = {3,3,3};
+    int navio_4[3] = {3,3,3};
 
+    int cone[3][5] = {
+    {0,0,1,0,0},
+    {0,1,1,1,0},
+    {1,1,1,1,1}
+    }; 
+
+    int cruz[3][5] = {
+    {0,0,1,0,0},
+    {1,1,1,1,1},
+    {0,0,1,0,0}
+    };
+
+    int octaedro[3][5] = {
+    {0,0,1,0,0},
+    {0,1,1,1,0},
+    {0,0,1,0,0}
+    };
 
     printf("TABULEIRO BATALHA NAVAL\n");
-    printf("  ");
+    printf("   ");
 
+    // Mostra as letras/colunas do tabuleiro
     for (int i = 0; i < LINHAS; i++){
         printf("%c ", letras[i]); 
          
     }
 
+    // Inicializa o tabuleiro com água (0)
+    for (int i = 0; i < LINHAS; i++){
+        for (int j = 0; j < COLUNAS; j++){
+            tabuleiro[i][j] = agua; 
+        }
+    }
+
     printf("\n");
 
-    for (int i = 0; i < LINHAS; i++)
-    {
-         printf("%2d", numeros[i]);      
-    
+    // tabuleiro[4][2] = navio_1[0]; //Inicio primeiro navio
+    // tabuleiro[4][3] = navio_1[1];
+    // tabuleiro[4][1] = navio_1[2];
 
+    // tabuleiro[6][3] = navio_2[0]; //Inicio segundo navio
+    // tabuleiro[7][3] = navio_2[1];
+    // tabuleiro[8][3] = navio_2[2];
+
+    // tabuleiro[0][9] = navio_3[0]; //Inicio terceiro navio
+    // tabuleiro[1][8] = navio_3[1];
+    // tabuleiro[2][7] = navio_3[2];
+
+    // tabuleiro[9][9] = navio_4[0]; //Inicio quarto navio
+    // tabuleiro[8][8] = navio_4[1];
+    // tabuleiro[7][7] = navio_4[2];
+
+    // Imprime o tabuleiro
+    for (int i = 0; i < LINHAS; i++) {
+          printf("%2d", numeros[i]);      
+    
         for (int j = 0; j < COLUNAS; j++){
 
-            tabuleiro[i][j] = agua;
+            printf("% d", tabuleiro[i][j]);
 
-            // Nível Aventureiro - Expansão do Tabuleiro e Posicionamento Diagonal
-            
-            if (i == 0 && j == 9 ) //inicio Terceiro navio
-            {
-                tabuleiro[i][j] = 3;
-                
-            }else if (i == 1 && j == 8 )
-            {
-                tabuleiro[i][j] = 3;
+            if (i == 0 && j == 1) { //ponto de inicio do cone
 
-            }else if (i == 2 && j == 7 )
-            {
-                tabuleiro[i][j] = 3;
+                for (int l = 0; l < 3; l++) { 
+                    for (int m = 0; m < 5; m++){
+                        
+                        tabuleiro[i+l][j+m] = cone[l][m];  
 
-                
-            } else if (i == 9 && j == 9) //Inicio Quarto navio
-            {
-                tabuleiro[i][j] = 3;
-            }else if (i == 8 && j == 8)
-            {
-                tabuleiro[i][j] = 3;
-            }else if (i == 7 && j == 7)
-            {
-                tabuleiro[i][j] = 3;
+                    }
+        
+                }
             }
 
-            tabuleiro[4][2] = navio_1[0]; //Inicio primeiro navio
-            tabuleiro[4][3] = navio_1[1];
-            tabuleiro[4][1] = navio_1[2];
+            if (i == 4 && j == 4 ) { //ponto de inicio cruz
+                
+                for (int n = 0; n < 3; n++) {
+                    for (int o = 0; o < 5; o++) {
+                        tabuleiro[i+n][j+o] = cruz[n][o];
+                    }
+                    
+                }
+            }
 
-            tabuleiro[6][3] = navio_2[0]; //Inicio segundo navio
-            tabuleiro[7][3] = navio_2[1];
-            tabuleiro[8][3] = navio_2[2];
-            
-            printf("% d", tabuleiro[i][j]);
+
+            if (i == 7 && j == 0 ) { //ponto de inicio cruz
+                
+                for (int p = 0; p < 3; p++) {
+                    for (int q = 0; q < 5; q++) {
+                        tabuleiro[i+p][j+q] = octaedro[p][q];
+                    }
+                    
+                }
+            }
             
         }
+            
+            
+            
 
         printf("\n");
         
